@@ -10,9 +10,7 @@ async def start_bot(message: types.Message):
                                                       f'Привет, для того чтобы играть вводи количество конфет от 1 до 28, чтобы перезапустить игру введи /restart' )
 @dp.message_handler(commands=['restart'])
 async def restart(message: types.Message):
-    global new_game
     global total_candys
-    
     total_candys = 150
     await bot.send_message(message.from_user.id, text=f'Игра перезапущена {total_candys} конфет осталось')
 
@@ -61,22 +59,9 @@ async def player_turn(message: types.Message):
                         await player_to_turn(message)
                     else:
                         await check_win(message)
-
-
             else:
                 await bot.send_message(message.from_user.id, text=f'Число больше остатка конфет')
         else:
             await bot.send_message(message.from_user.id, text=f'Введите корректное число')
     else:
         await bot.send_message(message.from_user.id, text=f'Введите число')
-    
-
-
-
-
-
-    # player_turn(message)
-    # bot_turn(message)
-    # player_to_turn(message)
-
-
